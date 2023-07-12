@@ -27,6 +27,7 @@ def home_page():
 # Associates a URL with a Python function - accesses the root URL "log_in"
 @app.route("/log_in",methods=['GET','POST'])
 def log_in():
+    forms = fitnessForm()
     if forms.validate_on_submit():
         flash(f'Logged in as {forms.username.data}!', 'success')
         return redirect(url_for('main_page'))
@@ -51,8 +52,8 @@ def terms_and_conditions():
 
 # Associates a URL with a Python function - accesses the root URL "contact_us"
 @app.route("/contact_us",methods=['GET','POST'])
-def contact_us():
-    return render_template('contact_us.html', subtitle='contuct us')
+def contuct_us():
+    return render_template('contuct_us.html', subtitle='contuct us')
 
 # Associates a URL with a Python function - accesses the root URL "about_us"
 @app.route("/about_us",methods=['GET','POST'])
@@ -62,8 +63,9 @@ def about_us():
 # Associates a URL with a Python function - accesses the root URL "sign_up"
 @app.route("/sign_up",methods=['GET','POST'])
 def sign_up():
+    forms = fitnessForm()
     if forms.validate_on_submit():
-        flash(f'Account created for {fitnessform.username.data}!', 'success')
+        # flash(f'Account created for {fitnessform.username.data}!', 'success')
         return redirect(url_for('second_page'))
 
     return render_template('sign_up.html', subtitle='sign up', form=forms) 
@@ -72,7 +74,7 @@ def sign_up():
 @app.route("/third_page",methods=['GET','POST'])
 def third_page():
     forms = fitnessForm()
-    if form.validate_on_submit():
+    if forms.validate_on_submit():
         return redirect(url_for('main_page'))
 
     
