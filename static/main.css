@@ -115,8 +115,8 @@
   .footer {
     width: 100%;
     margin: 0 auto;
-    padding-top: 10px;
-    padding-bottom: 20px;
+    padding-top: 1px;
+    padding-bottom: 1px;
     text-align: center;
     color: #fff;
     position: absolute;
@@ -269,6 +269,6 @@
   }
 
   .nav{
-    text-align: center;
+    text-align: left;
   }
   

@@ -1,7 +1,18 @@
-<header>
-<h1>Summary</h1>
-</header>
-<h2> Activity</h2>
-
-<div class="box">
-    <
+{% extends "layout.html" %}
+{% block content %}
+  <div id="Info">
+    <h2>Fitness Tracker</h2>
+    <ul>
+      {% for workout in workouts %}
+      <li>
+        <b>Name:</b> {{ workout.name }}<br>
+        <b>Type:</b> {{ workout.type }}<br>
+        <b>Difficulty:</b> {{ workout.difficulty }}<br>
+        <b>Equipment:</b> {{ workout.equipment }}<br>
+        <b>Instructions:</b> {{ workout.instructions }}<br>
+        <b>Muscle:</b> {{ workout.muscle }}<br>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

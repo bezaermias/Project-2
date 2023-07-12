@@ -1,8 +1,9 @@
 # Import all the necessary libraries
 from flask import Flask, render_template, url_for, flash, redirect, request, session
 from flask_behind_proxy import FlaskBehindProxy
-from forms import fitnessForm
+from forms import fitnessForm, log, second, third
 from flask_sqlalchemy import SQLAlchemy
+from helper import make_google_fitness_tracking_api_request
 
 
 # Create a Flask app
@@ -29,6 +30,7 @@ def home_page():
 def log_in():
     forms = fitnessForm()
     if forms.validate_on_submit():
+        print("FORM HAS BEEN VALIDATED")
         flash(f'Logged in as {forms.username.data}!', 'success')
         return redirect(url_for('main_page'))
 
@@ -37,8 +39,8 @@ def log_in():
 #Associates a URL with a Python function - accesses the root URL "second_page"
 @app.route("/second_page",methods=['GET','POST'])
 def second_page():
+    forms= second()
     if forms.validate_on_submit():
-        flash(f'Account created for {forms.username.data}!', 'success')
         return redirect(url_for('third_page'))
     return render_template('second_page.html', subtitle='sign up', form=forms)
 
@@ -65,6 +67,7 @@ def about_us():
 def sign_up():
     forms = fitnessForm()
     if forms.validate_on_submit():
+        print("REGISTRATION HAS BEEEN VALIDATED")
         # flash(f'Account created for {fitnessform.username.data}!', 'success')
         return redirect(url_for('second_page'))
 
@@ -73,7 +76,7 @@ def sign_up():
 # Associates a URL with a Python function - accesses the root URL "third_page"
 @app.route("/third_page",methods=['GET','POST'])
 def third_page():
-    forms = fitnessForm()
+    forms = third()
     if forms.validate_on_submit():
         return redirect(url_for('main_page'))
 
@@ -83,9 +86,8 @@ def third_page():
 # Associates a URL with a Python function - accesses the root URL "main_page"
 @app.route("/main_page",methods=['GET','POST'])
 def main_page():
-    if forms.validate_on_submit():
-        return redirect(url_for('main_page')) 
-    return render_template('main_page.html', subtitle='Review Page', form=forms) 
+    workouts = make_google_fitness_tracking_api_request()
+    return render_template('main_page.html', subtitle='Review Page', workouts=workouts) 
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
