@@ -87,7 +87,10 @@ def third_page():
 @app.route("/main_page",methods=['GET','POST'])
 def main_page():
     workouts = make_google_fitness_tracking_api_request()
-    return render_template('main_page.html', subtitle='Review Page', workouts=workouts) 
+    if workouts == None:
+        print(workouts)
+    print(workouts)
+    return render_template('main_page.html', subtitle='Review Page', workouts=[]) 
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")

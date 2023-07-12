@@ -17,15 +17,17 @@
    {{ form.height(class="form-control form-control-lg") }}
 {% endif %}
 </div>
-  <div class="form-group">
-     {{ form.weight.label(class="form-control-label") }}
-     {% if form.weight.errors %}
-       {{ form.weight(class="form-control form-control-lg is-invalid") }}
-       <div class="invalid-feedback">
-         {% for error in form.weight.errors%}
-             <span>{{error}}</span>
-         {% endfor %}
-       </div>
+{{ form.weight.label(class="form-control-label") }}
+ {% if form.weight.errors %}
+<div class="form-group">
+  {{ form.weight.label(class="form-control-label") }}
+  <div class="input-group">
+      {{ form.weight(class="form-control form-control-lg") }}
+      <div class="input-group-append">
+          <span class="input-group-text">kg</span>
+      </div>
+  </div>
+</div>
    {% else %}
        {{ form.weight(class="form-control form-control-lg") }}
    {% endif %}
