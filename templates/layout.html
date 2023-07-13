@@ -12,15 +12,18 @@
 
 <body>
     <header>
-    <a id="logo" href="./{{ url_for('home_page') }}"><img src="./{{ url_for('static', filename='./images/logo.jpg') }}"" alt="Logo" class="logo"></a>
-    <h1 id="name">Fitness Tracker</h1>
+
+  <div class ="Header">
+    <a href="./{{ url_for('home_page') }}"><img src="./{{ url_for('static', filename='./images/logo.jpg') }}" alt="Logo" class="logo"></a>
+    <h1>Fitness Tracker</h1>
+  </div>
   </header>
 
-  <nav class=" nav">
-      <a href="./{{ url_for('log_in') }}">Log In</a>
-      <a href="./{{ url_for('sign_up') }}">Sign Up</a>
-      <a href="./{{ url_for('about_us') }}">About Us</a>
-      <a href="./{{ url_for('contuct_us') }}">Contact Us</a>
+   <nav class="nav">
+      <li><a href="./{{ url_for('log_in') }}">Log In</a></li>
+      <li><a href="./{{ url_for('sign_up') }}">Sign Up</a></li>
+      <li><a href="./{{ url_for('about_us') }}">About Us</a></li>
+        <li><a href="./{{ url_for('contuct_us') }}">Contact Us</a></li>
   </nav>
   <div class="container">
     <div class="content">
@@ -39,7 +42,7 @@
     </div>
   </div>
 
-  <footer>
+  <!-- <footer>
     <div class="footer">
       <a href="https://www.facebook.com/fitnesstracker"><i class="bi bi-facebook"></i></a>
       <a href="https://twitter.com/fitnesstracker"><i class="bi bi-twitter"></i></a>
@@ -47,7 +50,7 @@
       <a href="mailto:support@fitnesstracker.com"><i class="bi bi-google"></i></a>
       <p>Copyright© Body Building Fitness Tracking Site 2023, All rights reserved.</p>
     </div>
-  </footer>
+  </footer> -->
 </body>
 
 </html>

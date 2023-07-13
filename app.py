@@ -114,17 +114,18 @@ def third_page():
 def main_page():
     # an instance of th mainForm class
     form = mainForm()
-    # The function is called to retrieve a list of workouts from the ninja exercise API
-    workouts = make_google_fitness_tracking_api_request()
     if form.validate_on_submit():
         # retrieve the selected msucle value
         muscle = form.muscle.data.lower()
-        # filter the lsit of workouts based on the selected muscle and store it in a list using list comprehension
-        #by checking if the selected muscle is contatined in the "muscles" attribute of each workout
-        filtered_workouts = [workout for workout in workouts if muscle in workout['muscle'].lower()]
-        # pass the filtered workouts to the main_page
-        return render_template('main_page.html', subtitle='Review Page', form=form, workouts=filtered_workouts)
-    return render_template('main_page.html', subtitle='Review Page', form=form, workouts=workouts)
+        if muscle:
+            # The function is called to retrieve a list of workouts from the ninja exercise API
+            workouts = make_google_fitness_tracking_api_request()
+            # filter the lsit of workouts based on the selected muscle and store it in a list using list comprehension
+            #by checking if the selected muscle is contatined in the "muscles" attribute of each workout
+            filtered_workouts = [workout for workout in workouts if muscle in workout['muscle'].lower()]
+            # pass the filtered workouts to the main_page
+            return render_template('main_page.html', subtitle='Review Page', form=form, workouts=filtered_workouts)
+    return render_template('main_page.html', subtitle='Review Page', form=form, workouts=None)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)

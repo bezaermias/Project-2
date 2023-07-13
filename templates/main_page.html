@@ -21,8 +21,12 @@
       </div>
     </form>
     <ul>
-      {% if workouts %}
-        {% for workout in workouts %}
+      {% if workouts is none %}
+  <p>Please select a muscle type to see the exercises.</p>
+{% else %}
+  <ul>
+    {% if workouts %}
+      {% for workout in workouts %}
         <li>
           <b>Name:</b> {{ workout.name }}<br>
           <b>Type:</b> {{ workout.type }}<br>
@@ -31,10 +35,13 @@
           <b>Instructions:</b> {{ workout.instructions }}<br>
           <b>Muscle:</b> {{ workout.muscle }}<br>
         </li>
-        {% endfor %}
-      {% else %}
-        <li>No workouts found for the selected muscle.</li>
-      {% endif %}
+      {% endfor %}
+    {% else %}
+      <li>No workouts found for the selected muscle.</li>
+    {% endif %}
+  </ul>
+{% endif %}
+
     </ul>
   </div>
 {% endblock %}
