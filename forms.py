@@ -3,18 +3,44 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, SelectField, RadioField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 
+
 # Create a class fitnessForm to be used in our main page
 class fitnessForm(FlaskForm):
+
+    def register_check(username):
+        user = User.filter_by(username=username).first()
+        if user == username:
+            return False
+        else:
+            return True
+
     # For the sign_up page
-    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
+    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20), 
+   # register_check(username)
+    ])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign up')
+
+  
+        
 class log(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
+
+    def login_check(username):
+        user = User.filter_by(username=username).first()
+        if user == username:
+            return True
+        else:
+            return False
+        
+    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20), 
+    #login_check(username)
+    ])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Log In')
+
+
 
 
 class second(FlaskForm):
@@ -35,6 +61,10 @@ class mainForm(FlaskForm):
     muscle = SelectField('Muscle', choices=[('biceps', 'Biceps'), ('triceps', 'Triceps'), ('chest', 'Chest'), ('back', 'Back'), ('legs', 'Legs'), ('shoulders', 'Shoulders'), ('abs', 'Abs')])
     submit = SubmitField('Search')
 
+    
+
+
+    
 
 
     

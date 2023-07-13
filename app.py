@@ -3,18 +3,17 @@ from flask import Flask, render_template, url_for, flash, redirect, request, ses
 from flask_behind_proxy import FlaskBehindProxy
 from forms import fitnessForm, log, second, third, mainForm
 from flask_sqlalchemy import SQLAlchemy
-from helper import make_google_fitness_tracking_api_request
-
+from helper import make_google_fitness_tracking_api_request, save_users_to_database
 
 # Create a Flask app
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'd945cba4a6b3c7a43288ea10bc2e63d7'
 proxied = FlaskBehindProxy(app)
 
+
 # Create a sqlite Database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
-
 
 # Associates a URL with a Python function - accesses the root URL "/"
 @app.route("/",methods=['GET','POST'])
@@ -135,6 +134,7 @@ class User(db.Model):
 
 with app.app_context():
     db.create_all()
+
 
 
 
