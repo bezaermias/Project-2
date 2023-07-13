@@ -3,18 +3,33 @@ from flask import Flask, render_template, url_for, flash, redirect, request, ses
 from flask_behind_proxy import FlaskBehindProxy
 from forms import fitnessForm, log, second, third
 from flask_sqlalchemy import SQLAlchemy
-from helper import make_google_fitness_tracking_api_request
-
+from helper import make_google_fitness_tracking_api_request, save_users_to_database
 
 # Create a Flask app
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'd945cba4a6b3c7a43288ea10bc2e63d7'
 proxied = FlaskBehindProxy(app)
 
+
 # Create a sqlite Database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
+#create a manual database
+# user_reference_db = [{
+#     'name': 
+#     'password':
+# }]
 
+
+class User(db.Model):
+    login_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Text, nullable=False)
+    username = db.Column(db.Text, nullable=False)
+    password = db.Column(db.Text, nullable=False)
+
+with app.app_context():
+    #db.drop_all()
+    db.create_all() 
 
 # Associates a URL with a Python function - accesses the root URL "/"
 @app.route("/",methods=['GET','POST'])
@@ -68,7 +83,12 @@ def sign_up():
     forms = fitnessForm()
     if forms.validate_on_submit():
         print("REGISTRATION HAS BEEEN VALIDATED")
-        # flash(f'Account created for {fitnessform.username.data}!', 'success')
+         #db entry
+        user_info = User(id='success', username=forms.username.data, password=forms.password.data)
+        #print(user_info)
+        db.session.add(user_info)
+        db.session.commit()
+        flash(f'Account created for {forms.username.data}!', 'success')
         return redirect(url_for('second_page'))
 
     return render_template('sign_up.html', subtitle='sign up', form=forms) 
@@ -90,7 +110,8 @@ def main_page():
     if workouts == None:
         print(workouts)
     print(workouts)
-    return render_template('main_page.html', subtitle='Review Page', workouts=[]) 
+    return render_template('main_page.html', subtitle='Review Page', workouts=[])
+
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
