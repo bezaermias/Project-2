@@ -6,22 +6,28 @@ import json
 
 
 def make_google_fitness_tracking_api_request():
-    muscle = 'biceps'
-    url = 'https://api.api-ninjas.com/v1/exercises?muscle{}'.format(muscle) 
-    response = requests.get(url, headers={'X-Api-Key': 'me7NFMjpZVgBax6mgRGN0g==JZ4C6IbPhz7NHl08'})
-    data = response.json()
-    
-    workouts = []  
-    for exercise in data:
-        workout = {
-            'name': exercise['name'],
-            'type': exercise['type'],
-            'difficulty': exercise['difficulty'],
-            'equipment': exercise['equipment'],
-            'instructions': exercise['instructions'],
-            'muscle': exercise['muscle'],
+    url = 'https://api.api-ninjas.com/v1/exercises'
+    api_key = 'me7NFMjpZVgBax6mgRGN0g==JZ4C6IbPhz7NHl08'
+    data = []
+    offset = 0
+    limit = 10
+    total_items = 0
+
+    while total_items < 30:
+        params = {
+            'offset': offset,
+            'limit': limit
         }
-        work= workouts.append(exercise)
-    return work
+
+        response = requests.get(url, headers={'X-Api-Key': api_key}, params=params)
+        response_data = response.json()
+        data.extend(response_data)
+        total_items += len(response_data)
+        offset += limit
+
+        if len(response_data) < limit:
+            break
+
+    return data[:] 
 
 

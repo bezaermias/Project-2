@@ -8,6 +8,7 @@
     font-family: 'Times New Roman', Times, serif;
     background-color:#f7f7f7;
   }
+
   
   h1 {
     font-size: 26px;
@@ -121,7 +122,7 @@
     color: #fff;
     position: absolute;
     background-color: #3b232f;
-    bottom: 0;
+    /* bottom: 0; */
   }
   
   .footer p {
@@ -269,6 +270,11 @@
   }
 
   .nav{
-    text-align: left;
+    align-content: left;
   }
   
+  #picture{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

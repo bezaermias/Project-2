@@ -14,6 +14,8 @@ class fitnessForm(FlaskForm):
 class log(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
     password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Log In')
+
 
 class second(FlaskForm):
     # For the second_page
@@ -29,6 +31,9 @@ class third(FlaskForm):
     goal = RadioField('What is your Goal?', validators=[DataRequired()],choices=[(1, 'Lose Weight'), (2, 'Gain Weight'), (3, 'Maintain Weight')])
     submit = SubmitField('Continue')
 
+class mainForm(FlaskForm):
+    muscle = SelectField('Muscle', choices=[('biceps', 'Biceps'), ('triceps', 'Triceps'), ('chest', 'Chest'), ('back', 'Back'), ('legs', 'Legs'), ('shoulders', 'Shoulders'), ('abs', 'Abs')])
+    submit = SubmitField('Search')
 
 
 

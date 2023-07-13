@@ -11,8 +11,9 @@
 </head>
 
 <body>
-    <a href="./{{ url_for('home_page') }}"><img src="./{{ url_for('static', filename='./images/logo.png') }}"" alt="Logo" class="logo"></a>
-    <h1>Fitness Tracker</h1>
+    <header>
+    <a id="logo" href="./{{ url_for('home_page') }}"><img src="./{{ url_for('static', filename='./images/logo.jpg') }}"" alt="Logo" class="logo"></a>
+    <h1 id="name">Fitness Tracker</h1>
   </header>
 
   <nav class=" nav">

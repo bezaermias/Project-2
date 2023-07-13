@@ -1,18 +1,40 @@
 {% extends "layout.html" %}
 {% block content %}
+<br>
+<br>
+
   <div id="Info">
-    <h2>Fitness Tracker</h2>
+    <form method="POST">
+      {{ form.hidden_tag() }}
+      <div class="input-group input-group-lg">
+        <select name="muscle" class="form-select">
+          <option value="">Select Muscle</option>
+          <option value="biceps">Biceps</option>
+          <option value="triceps">Triceps</option>
+          <option value="chest">Chest</option>
+          <option value="back">Back</option>
+          <option value="legs">Legs</option>
+          <option value="shoulders">Shoulders</option>
+          <option value="abs">Abs</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </form>
     <ul>
-      {% for workout in workouts %}
-      <li>
-        <b>Name:</b> {{ workout.name }}<br>
-        <b>Type:</b> {{ workout.type }}<br>
-        <b>Difficulty:</b> {{ workout.difficulty }}<br>
-        <b>Equipment:</b> {{ workout.equipment }}<br>
-        <b>Instructions:</b> {{ workout.instructions }}<br>
-        <b>Muscle:</b> {{ workout.muscle }}<br>
-      </li>
-      {% endfor %}
+      {% if workouts %}
+        {% for workout in workouts %}
+        <li>
+          <b>Name:</b> {{ workout.name }}<br>
+          <b>Type:</b> {{ workout.type }}<br>
+          <b>Difficulty:</b> {{ workout.difficulty }}<br>
+          <b>Equipment:</b> {{ workout.equipment }}<br>
+          <b>Instructions:</b> {{ workout.instructions }}<br>
+          <b>Muscle:</b> {{ workout.muscle }}<br>
+        </li>
+        {% endfor %}
+      {% else %}
+        <li>No workouts found for the selected muscle.</li>
+      {% endif %}
     </ul>
   </div>
 {% endblock %}
