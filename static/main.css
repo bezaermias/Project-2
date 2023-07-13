@@ -120,6 +120,12 @@
   .box-right {
     float: right;
   }
+
+  /* added to ensure that the footer stays stuck to the bottom of the page */
+  html{
+    min-height:100%;
+    position: relative;
+  }
   
   .footer {
     width: 100%;
@@ -130,7 +136,9 @@
     color: #fff;
     position: absolute;
     background-color: #3b232f;
-    /* bottom: 0; */
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
   }
   
   .footer p {
