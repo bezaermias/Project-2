@@ -5,30 +5,45 @@
   }
   
   body {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Nunito Sans', sans-serif;
     background-color:#f7f7f7;
   }
+  header{
+    background-color: lightseagreen;
+    border: 1px solid black;
+    align-items: right;
+    height: 130px;
+    padding-bottom: 130px;
+    margin-bottom: 50px;
 
-.Header img{
+  }
+.Navbar img{
+  border: 1px solid black;
   float:left;
+  height: 130px; 
+  width: auto;
+
 }
-.Header h1 {
+
+
+.Navbar h1 {
   position: relative;
   top: 18px;
   left: 10px;
+  font-family: 'Victor Mono', monospace;
 }
   
   h1 {
     font-size: 26px;
     color: #000;
-    font-family: 'Economica', sans-serif;
+    font-family: 'Victor Mono', monospace;
     font-weight: normal;
     text-transform: uppercase;
     margin-bottom: 10px;
   }
   
   h2 {
-    font-family: 'Economica', sans-serif;
+    font-family: 'Victor Mono', monospace;
     font-size: 19px;
     color: #d1869b;
     font-weight: normal;
@@ -37,8 +52,10 @@
   }
   
   p {
+    font-family:'Nunito Sans', sans-serif;
     line-height: 1.5;
-    color: #555;
+    color: black;
+    padding: 20px;
   }
   
   a {
@@ -51,9 +68,10 @@
   a:hover {
     color: #a1ddab;
   }
-  
+
   .button {
-    margin-top: 30px;
+    margin-top: 5px;
+    margin-bottom: 40px;
   }
   
   .button a {
@@ -65,7 +83,7 @@
     border-radius: 20px;
     color: #ffffff;
     opacity: 0.9;
-    font-family: 'Economica', sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
     font-size: 17px;
     line-height: 40px;
     text-align: center;
@@ -97,7 +115,7 @@
   }
   
   .form input {
-    font-family: "Lato", sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
     font-size: 14px;
     padding: 10px;
     margin-bottom: 10px;
@@ -113,18 +131,12 @@
     text-align: center;
     font-weight: 900;
     color: #fff;
-    font-family: "Lato", sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
     position: relative;
   }
   
   .box-right {
     float: right;
-  }
-
-  /* added to ensure that the footer stays stuck to the bottom of the page */
-  html{
-    min-height:100%;
-    position: relative;
   }
   
   .footer {
@@ -136,9 +148,7 @@
     color: #fff;
     position: absolute;
     background-color: #3b232f;
-    left: 0;
-    bottom: 0;
-    overflow: hidden;
+    /* bottom: 0; */
   }
   
   .footer p {
@@ -298,8 +308,15 @@
     padding: 14px 16px;
   }
   
-  #picture{
+  .picture{
     display: block;
     margin-left: auto;
     margin-right: auto;
-}
+    width:50%;
+
+  }
+
+  .main{
+    font-family:'Nunito Sans', sans-serif;
+    line-height: 30px;
+  }
