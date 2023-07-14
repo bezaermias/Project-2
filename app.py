@@ -24,6 +24,17 @@ def home_page():
         return redirect(url_for('log_in'))
     return render_template('index.html', subtitle='Welcome', form=forms)
 
+#auto-deployment for pythonanywhere
+@app.route("/update_server", methods=['POST'])
+def webhook():
+    if request.method == 'POST':
+        repo = git.Repo('/home/bodyfitapp/Project-2')
+        origin = repo.remotes.origin
+        origin.pull()
+        return 'Updated PythonAnywhere successfully', 200
+    else:
+        return 'Wrong event type', 400
+
 # Associates a URL with a Python function - accesses the root URL "log_in"
 @app.route("/log_in", methods=['GET', 'POST'])
 def log_in():
